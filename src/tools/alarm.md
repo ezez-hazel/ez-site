@@ -1,0 +1,30 @@
+---
+layout: layouts/base.njk
+title: 直播推送
+tags:
+  - tools
+---
+
+# 直播推送
+
+监测直播间开播状态并进行统一推送的服务。
+
+当前使用轮询方式工作，开播前轮询间隔为`1min`，开播后轮询间隔为`5min`。
+
+## Bark (iOS)
+
+1. 在 iOS 上安装 Bark，并允许`重要提醒`通知权限。
+
+    <a target='_blank' href='https://apps.apple.com/cn/app/bark-custom-notifications/id1403753865'>
+    <img src='http://ww2.sinaimg.cn/large/0060lm7Tgw1f1hgrs1ebwj308102q0sp.jpg' width='144' height='49' />
+    </a>
+
+2. [添加服务器](bark://addServer?address=https%3A%2F%2Fbark.xn--4gqa980aba.vip)
+
+<!-- ## Accnotify (Android)
+
+即将推出
+
+## Webhook
+
+即将推出 -->
