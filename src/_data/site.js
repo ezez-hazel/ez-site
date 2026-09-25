@@ -6,5 +6,5 @@ module.exports = {
     generator: "Eleventy",
     version: eleventyPackage.version
   },
-  github: "https://github.com/ezez-hazel/xn--4gqa980aba.vip"
+  github: "https://github.com/ezez-hazel/ez-site"
 };

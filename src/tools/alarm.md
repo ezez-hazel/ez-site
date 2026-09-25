@@ -21,6 +21,8 @@ tags:
 
 2. [添加服务器](bark://addServer?address=https%3A%2F%2Fbark.xn--4gqa980aba.vip)
 
+**Bark 推送会以重要提醒（类似地震预警）方式响最多30s，使用前请务必确保你是真正的满考子**
+
 <!-- ## Accnotify (Android)
 
 即将推出
