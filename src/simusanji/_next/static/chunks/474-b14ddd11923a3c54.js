@@ -11473,7 +11473,7 @@
           u = t || "".concat(J.Bq.PARROT_FRONTEND_URL, "ogp.png");
         return (0, s.jsxs)(nw(), {
           children: [
-            (0, s.jsx)("title", { children: d }),
+            // (0, s.jsx)("title", { children: d }),
             (0, s.jsx)("meta", { charSet: "utf-8" }),
             (0, s.jsx)("meta", { name: "description", content: p }),
             r &&
@@ -11514,11 +11514,11 @@
             }),
             i && (0, s.jsx)("meta", { name: "robots", content: "noindex" }),
             c && (0, s.jsx)("link", { rel: "canonical", href: c }),
-            (0, s.jsx)("link", {
-              rel: "shortcut icon",
-              type: "image/svg+xml",
-              href: "https://www.nijisanji.jp/favicon.svg",
-            }),
+            // (0, s.jsx)("link", {
+            //   rel: "shortcut icon",
+            //   type: "image/svg+xml",
+            //   href: "https://www.nijisanji.jp/favicon.svg",
+            // }),
             (0, s.jsx)("link", {
               rel: "apple-touch-icon",
               sizes: "180x180",

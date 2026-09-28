@@ -138,7 +138,6 @@ body {
   font-family: var(--site-font);
   margin: 0;
   min-width: 0;
-  background: #f7f4ec;
   color: #20231f;
 }
 
@@ -182,12 +181,17 @@ nav {
 
 a {
   color: inherit;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.2em;
+  text-decoration: none;
+  /* text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em; */
 }
 
 a:hover,
-a:focus-visible {
+a:focus-visible,
+summary:hover,
+summary:focus-visible,
+.toolbar-menu > label:hover,
+.toolbar-menu > label:focus-visible {
   background: #20231f;
   color: #f7f4ec;
   outline: 0;
@@ -207,9 +211,13 @@ main {
 }
 
 main .post {
+  box-sizing: border-box;
   width: min(100% - 2em, 72em);
-  margin: 0 auto;
-  padding: clamp(2em, 8vw, 6em) 0;
+  margin: clamp(2em, 8vw, 6em) auto;
+  padding: clamp(1em, 4vw, 3em) clamp(2em, 8vw, 6em);
+  border: 4px solid #20231f;
+  background: #f7f4ec;
+  box-shadow: 6px 6px 0 #20231f;
 }
 
 /* The footer stays in normal flow, so it follows the full-height content area. */
@@ -339,4 +347,49 @@ summary {
     padding-right: 1em;
     padding-left: 1em;
   }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #171916;
+    color: #e8e5d8;
+  }
+
+  header {
+    border-color: #20231f;
+    background: #d3d3d3;
+    color: #20231f;
+  }
+
+  /* a:hover,
+  a:focus-visible,
+  summary:hover,
+  summary:focus-visible {
+    background: #e8e5d8;
+    color: #171916;
+  } */
+
+  main .post {
+    border-color: #e8e5d8;
+    background: #292d27;
+    color: #e8e5d8;
+    box-shadow: 6px 6px 0 #080908;
+  }
+
+  footer {
+    border-color: #20231f;
+    background: #bbdec0;
+    color: #20231f;
+  }
+
+  /* .tool-menu ul,
+  .toolbar-links {
+    border-color: #e8e5d8;
+    background: #292d27;
+    box-shadow: 4px 4px 0 #080908;
+  } */
+
+  /* .toolbar-menu > label {
+    border-color: #e8e5d8;
+  } */
 }

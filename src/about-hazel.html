@@ -6,18 +6,13 @@ tags:
 ---
 
 <!doctype html>
-<html lang="ja" dir="ltr" prefix="og: http://ogp.me/ns#">
+<html lang="zh-CN" dir="ltr" prefix="og: http://ogp.me/ns#">
   <head>
     <meta charset="utf-8" />
     <meta name="description" content="关于灰泽满Hazel" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/css/styles.css" />
     <title>关于灰泽满Hazel | 一几一几</title>
-    <link
-      rel="shortcut icon"
-      type="image/svg+xml"
-      href="https://www.nijisanji.jp/favicon.svg"
-    />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -8250,16 +8245,8 @@ tags:
       rel="prefetch"
       href="https://www.nijisanji.jp/_next/static/chunks/pages/official-programs-7f6ececc3c1e571a.js"
     />
+    <link rel="stylesheet" href="/css/styles.css" />
     <style>
-      #__next header,
-      #__next footer {
-        display: none !important;
-      }
-
-      main {
-        padding-top: 0 !important;
-      }
-
       a[href="/talents"],
       a[href="https://www.nijisanji.jp/talents"] {
         display: none !important;
@@ -8268,15 +8255,40 @@ tags:
       div:has(> div[data-testid="FavoriteButton"]) {
         display: none !important;
       }
-    </style>
-    <style>
-      header,
-      footer {
-        font-size: 256%;
-        --rem-fallback: 1em;
+
+      #__next header,
+      #__next footer {
+        display: none !important;
+      }
+
+      body {
+        background: unset;
+      }
+
+      body * {
+        font-family: var(--site-font) !important;
+      }
+
+      main {
+        padding-top: 0 !important;
+      }
+
+      #__next a:hover {
+        background: unset;
+      }
+
+      #__next main {
+        color: #2d2d2d;
       }
     </style>
-    <link rel="stylesheet" href="/css/styles.css" />
+    <script>
+      (function () {
+        window.addEventListener("load", function () {
+          document.head.getElementsByTagName("title")[0].innerText =
+            "关于灰泽满Hazel | 一几一几";
+        });
+      })();
+    </script>
   </head>
 
   <body id="body">
@@ -9491,7 +9503,7 @@ tags:
               "viewCount": 0,
               "orderByRuby": 244,
               "orderByEnName": 171,
-              "ogp": "https://images.microcms-assets.io/assets/5694fd90407444338a64d654e407cc0e/f02de8db255d46c6861066b58f231eaa/liver-face_Rhea.png?w=1200\u0026h=630\u0026fit=fill\u0026fill=solid"
+              "ogp": "/simusanji/api/image-proxy/liver-face_Hazel.png"
             },
             "allFanclubSlugs": [
               {
@@ -9676,7 +9688,7 @@ tags:
               }
             ],
             "isTalentPage": true,
-            "ogp": "https://images.microcms-assets.io/assets/5694fd90407444338a64d654e407cc0e/f02de8db255d46c6861066b58f231eaa/liver-face_Rhea.png?w=1200\u0026h=630\u0026fit=fill\u0026fill=solid",
+            "ogp": "/simusanji/api/image-proxy/liver-face_Hazel.png",
             "serverSideError": {
               "statusCode": null,
               "message": null
@@ -9820,7 +9832,7 @@ tags:
         },
         "page": "/talents/[...slug]",
         "query": {
-          "slug": ["l", "rhea"]
+          "slug": ["l", "hazel"]
         },
         "buildId": "-o7EE1e7juwBpHu6MRy1p",
         "isFallback": false,
