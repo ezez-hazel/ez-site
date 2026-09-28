@@ -1,15 +1,19 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ title }}</title>
-  </head>
-  <body>
-    {% include "components/toolbar.njk" %}
-    <main>
-      {{ content | safe }}
-    </main>
-    {% include "components/footer.njk" %}
-  </body>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="{{ title }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/css/styles.css">
+        <title>{{ title }} | 一几一几</title>
+    </head>
+    <body>
+        <div class="page-content">
+            {% include "components/toolbar.njk" %}
+            <main>
+                {{ content | safe }}
+            </main>
+        </div>
+        {% include "components/footer.njk" %}
+    </body>
 </html>

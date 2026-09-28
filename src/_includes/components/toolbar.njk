@@ -1,16 +1,30 @@
 <header>
   <nav aria-label="主导航">
-    <a href="/">首页</a>
-    <span>占位内容</span>
-    <span>占位内容</span>
-    <span>占位内容</span>
-    <details>
-      <summary>实用工具</summary>
-      <ul>
-        {% for tool in collections.tools %}
-          <li><a href="{{ tool.url }}">{{ tool.data.title }}</a></li>
+    <div class="toolbar-menu">
+      <input id="toolbar-toggle" type="checkbox">
+      <label for="toolbar-toggle">菜单</label>
+      <div class="toolbar-links">
+        <a href="/">首页</a>
+        {% for toolbar in collections.toolbar | sortByDataField('order') %}
+          <a href="{{ toolbar.url }}">{{ toolbar.data.title }}</a>
         {% endfor %}
-      </ul>
-    </details>
+        <details class="tool-menu">
+          <summary>实用工具</summary>
+          <ul>
+            {% for tool in collections.tools %}
+              <li><a href="{{ tool.url }}">{{ tool.data.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </details>
+        <details class="tool-menu">
+          <summary>外部链接</summary>
+          <ul>
+            {% for external_link in collections.external_links %}
+              <li><a href="{{ external_link.data.link }}" target="blank">{{ external_link.data.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </details>
+      </div>
+    </div>
   </nav>
 </header>

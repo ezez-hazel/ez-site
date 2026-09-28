@@ -1,5 +1,5 @@
 ---
-layout: layouts/base.njk
+layout: layouts/post.njk
 title: 直播推送
 tags:
   - tools
@@ -19,7 +19,15 @@ tags:
     <img src='/icons/Download_on_the_App_Store_Badge_CNSC_RGB_blk_092917.svg' height='60px' />
     </a>
 
-2. [添加服务器](bark://addServer?address=https%3A%2F%2Fbark.xn--4gqa980aba.vip)
+2. 将服务器添加到 Bark
+
+    [添加服务器](bark://addServer?address=https%3A%2F%2Fbark.xn--4gqa980aba.vip)
+
+    或手动添加
+    - https://bark.一几一几.vip
+    - https://bark.xn--4gqa980aba.vip （当上一个 URL 无法添加时）
+
+    注意不要泄露 Bark 中的 `Key`，任何拥有 `Key` 的人都可以向你发送通知。
 
 **Bark 推送会以重要提醒（类似地震预警）方式响最多30s，使用前请务必确保你是真正的满考子**
 
