@@ -28,7 +28,6 @@ tags:
 
     或手动添加
     - https://bark.一几一几.vip
-    - https://bark.xn--4gqa980aba.vip （当上一个 URL 无法添加时）
 
     注意不要泄露 Bark 中的 `Key`，任何拥有 `Key` 的人都可以向你发送通知。
 
