@@ -1,36 +1,30 @@
-import type { UserConfig } from "@11ty/eleventy";
-import * as esbuild from "esbuild";
-import path from "node:path";
-import markdownIt from "markdown-it";
-
-export default function (eleventyConfig: UserConfig) {
-  const options = {
+module.exports = function (eleventyConfig) {
+  let markdownIt = require("markdown-it");
+  let esbuild = require("esbuild");
+  let path = require("path");
+  let options = {
     html: true,
     breaks: true,
     linkify: true,
   };
-
   eleventyConfig.addPassthroughCopy("src/css");
-//   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/fonts");
   eleventyConfig.addPassthroughCopy("src/icons");
   eleventyConfig.addPassthroughCopy("src/simusanji");
-
-  eleventyConfig.addFilter("sortByDataField", function (values: Array<any>, field: string) {
+  eleventyConfig.addFilter("sortByDataField", function (values, field) {
     return values.slice().sort((a, b) => {
-      const aVal = a.data[field];
-      const bVal = b.data[field];
+      let aVal = a.data[field];
+      let bVal = b.data[field];
 
       if (aVal < bVal) return -1;
       if (aVal > bVal) return 1;
       return 0;
     });
   });
-
   eleventyConfig.addTemplateFormats("ts");
   eleventyConfig.addExtension("ts", {
     outputFileExtension: "js",
-    compile: async function (inputContent: string | Uint8Array<ArrayBufferLike>, inputPath: string) {
+    compile: async function (inputContent, inputPath) {
       const parsed = path.parse(inputPath);
       if (parsed.name.startsWith("_")) {
         return;
@@ -48,9 +42,7 @@ export default function (eleventyConfig: UserConfig) {
       };
     },
   });
-
   eleventyConfig.setLibrary("md", markdownIt(options));
-
   return {
     dir: {
       input: "src",
@@ -59,4 +51,4 @@ export default function (eleventyConfig: UserConfig) {
     markdownTemplateEngine: "njk",
     passthroughFileCopy: true,
   };
-}
+};

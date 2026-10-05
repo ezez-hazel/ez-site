@@ -1,10 +1,6 @@
-import { readFileSync } from "node:fs";
+const eleventyPackage = require("../../node_modules/@11ty/eleventy/package.json");
 
-const eleventyPackage = JSON.parse(
-  readFileSync(new URL("../../node_modules/@11ty/eleventy/package.json", import.meta.url), "utf8")
-);
-
-export default {
+module.exports = {
   build: {
     datetime: new Date().toISOString(),
     year: new Date().getFullYear(),

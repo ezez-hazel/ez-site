@@ -1,10 +1,9 @@
 {
   "name": "xn--4gqa980aba.vip",
   "private": true,
-  "type": "module",
   "scripts": {
-    "build": "eleventy --config=eleventy.config.ts",
-    "start": "eleventy --serve --config=eleventy.config.ts"
+    "build": "eleventy",
+    "start": "eleventy --serve"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.6",
