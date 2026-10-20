@@ -7,6 +7,7 @@ module.exports = function (eleventyConfig) {
     breaks: true,
     linkify: true,
   };
+  eleventyConfig.addPassthroughCopy("src/favicon.ico");
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/fonts");
   eleventyConfig.addPassthroughCopy("src/icons");

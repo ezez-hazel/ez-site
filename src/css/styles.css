@@ -1,3 +1,4 @@
+/* 基础字号与使用背景图的页面画布。 */
 body,
 html {
   font-size: 62.5%;
@@ -20,6 +21,7 @@ body {
   background-attachment: fixed;
 }
 
+/* 让表单控件与网站统一使用像素字体。 */
 body,
 button,
 input,
@@ -28,55 +30,7 @@ textarea {
   font-family: var(--site-font);
 }
 
-/* Keep the navigation readable while allowing it to wrap on narrow screens. */
-header {
-  padding: clamp(1em, 3vw, 2em) clamp(1em, 5vw, 4em);
-  border-bottom: 2px solid #20231f;
-  background: #d3d3d3;
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  max-width: 72em;
-  margin: 0 auto;
-}
-
-.toolbar-menu {
-  display: block;
-}
-
-.toolbar-menu > input,
-.toolbar-menu > label {
-  display: none;
-}
-
-.toolbar-links {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75em 1.5em;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-  /* text-decoration-thickness: 2px;
-  text-underline-offset: 0.2em; */
-}
-
-a:hover,
-a:focus-visible,
-summary:hover,
-summary:focus-visible,
-.toolbar-menu > label:hover,
-.toolbar-menu > label:focus-visible {
-  background: #20231f;
-  color: #f7f4ec;
-  outline: 0;
-}
-
-/* Toolbar and content share one viewport-height layout area. */
+/* 页面骨架：toolbar 与内容区域共同撑满动态视口高度。 */
 .page-content {
   display: flex;
   flex-direction: column;
@@ -99,14 +53,82 @@ main .post {
   box-shadow: 6px 6px 0 #20231f;
 }
 
-/* The footer stays in normal flow, so it follows the full-height content area. */
+/* 品牌顶栏；建立高层级上下文，避免弹出菜单被页面内容遮挡。 */
+header {
+  position: relative;
+  z-index: 1000;
+  padding: clamp(1em, 3vw, 2em) clamp(1em, 5vw, 4em);
+  border-bottom: 2px solid #20231f;
+  background: #d3d3d3;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  max-width: 72em;
+  margin: 0 auto;
+}
+
+.toolbar-logo {
+  display: block;
+  position: relative;
+  left: clamp(-4em, calc((72em - 100vw) / 2), -1em);
+  width: clamp(3rem, 5vw, 4.5rem);
+  aspect-ratio: 1;
+  white-space: nowrap;
+}
+
+.toolbar-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.toolbar-menu {
+  display: block;
+  position: relative;
+  z-index: 1001;
+}
+
+.toolbar-toggle {
+  display: none;
+  border: 2px solid #20231f;
+  background: #f7f4ec;
+  box-shadow: 4px 4px 0 #20231f;
+}
+
+.toolbar-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75em 1.5em;
+}
+
+/* 链接继承当前主题，并使用实色像素焦点状态。 */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus-visible,
+summary:hover,
+summary:focus-visible,
+.toolbar-toggle:hover,
+.toolbar-toggle:focus-visible {
+  background: #20231f;
+  color: #f7f4ec;
+  outline: 0;
+}
+
+/* 页脚保持正常文档流，位于撑满视口的内容区域之后。 */
 footer {
   box-sizing: border-box;
   width: 100%;
   padding: 1.5em max(1em, calc((100% - 72em) / 2));
   border-top: 2px solid #20231f;
   background: #bbdec0;
-  /* color: #f7f4ec; */
   font-family: var(--site-font-10px);
 }
 
@@ -118,16 +140,18 @@ summary {
   cursor: pointer;
 }
 
-/* Position the native details menu outside the toolbar flow when expanded. */
+/* 工具菜单脱离 toolbar 定位，展开状态由 toolbar.ts 控制。 */
 .tool-menu {
   position: relative;
+  z-index: 1002;
 }
 
 .tool-menu ul {
+  display: block;
   position: absolute;
   top: calc(100% + 0.75em);
   left: 0;
-  z-index: 1;
+  z-index: 1003;
   box-sizing: border-box;
   min-width: 12em;
   max-width: calc(100vw - 2em);
@@ -137,13 +161,26 @@ summary {
   background: #f7f4ec;
   box-shadow: 4px 4px 0 #20231f;
   list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  overflow: hidden;
+  transform: translateY(-0.5em);
+  transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
+}
+
+.tool-menu.is-open > ul {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 .tool-menu li + li {
   margin-top: 0.5em;
 }
 
-/* Reduce outer spacing and keep footer text inside the viewport on mobile. */
+/* 小屏布局，以及移动端菜单的展开动画。 */
 @media screen and (max-width: 768px) {
   body,
   html {
@@ -162,32 +199,30 @@ summary {
 
   nav {
     width: 100%;
+    justify-content: space-between;
   }
 
   .toolbar-menu {
     display: block;
     position: relative;
+    margin-left: auto;
   }
 
-  .toolbar-menu > input {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
+  .toolbar-logo {
+    left: 0;
   }
 
-  .toolbar-menu > label {
+  .toolbar-toggle {
     display: block;
     width: fit-content;
     padding: 0.5em 0.75em;
-    border: 2px solid #20231f;
     cursor: pointer;
   }
 
   .toolbar-links {
-    display: none;
     position: absolute;
     top: calc(100% + 0.75em);
-    left: 0;
+    right: 0;
     z-index: 2;
     box-sizing: border-box;
     flex-direction: column;
@@ -195,13 +230,24 @@ summary {
     gap: 0.75em;
     width: min(16em, calc(100vw - 2em));
     padding: 0.75em;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-0.5em);
+    transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
+  }
+
+  .toolbar-links {
     border: 2px solid #20231f;
     background: #f7f4ec;
     box-shadow: 4px 4px 0 #20231f;
   }
 
-  .toolbar-menu > input:checked ~ .toolbar-links {
-    display: flex;
+  .toolbar-menu.is-open .toolbar-links {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 
   .tool-menu ul {
@@ -209,17 +255,24 @@ summary {
     width: auto;
     min-width: 0;
     max-width: none;
-    padding: 0.5em 0 0 1em;
+    max-height: 0;
+    padding: 0;
     border: 0;
+    background: transparent;
     box-shadow: none;
+    transform: translateY(-0.5em);
+    transition: max-height 160ms ease, opacity 160ms ease, transform 160ms ease,
+      visibility 160ms ease, padding 160ms ease;
+  }
+
+  .tool-menu.is-open > ul {
+    max-height: 20em;
+    padding: 0.5em 0 0 1em;
+    transform: translateY(0);
   }
 
   .tool-menu li + li {
     margin-top: 0.5em;
-  }
-
-  main .post {
-    width: min(100% - 2em, 72em);
   }
 
   footer {
@@ -228,9 +281,9 @@ summary {
   }
 }
 
+/* 深色模式只改变内容表面，header 与 footer 保留品牌配色。 */
 @media (prefers-color-scheme: dark) {
   body {
-    background: #171916;
     color: #e8e5d8;
   }
 
@@ -240,35 +293,46 @@ summary {
     color: #20231f;
   }
 
-  /* a:hover,
-  a:focus-visible,
-  summary:hover,
-  summary:focus-visible {
-    background: #e8e5d8;
-    color: #171916;
-  } */
+  main .post {
+    color: #e8e5d8;
+  }
 
   main .post {
     border-color: #e8e5d8;
     background: #292d27;
-    color: #e8e5d8;
     box-shadow: 6px 6px 0 #080908;
   }
 
+  /* .toolbar-toggle,
+  .tool-menu ul {
+    border-color: #e8e5d8;
+    background: #292d27;
+    box-shadow: 4px 4px 0 #080908;
+  }
+
+  .toolbar-toggle,
+  .tool-menu ul a {
+    color: #e8e5d8;
+  }
+
+  .toolbar-toggle:hover,
+  .toolbar-toggle:focus-visible,
+  .tool-menu ul a:hover,
+  .tool-menu ul a:focus-visible {
+    background: #e8e5d8;
+    color: #20231f;
+    outline: 0;
+  }
+
+  .toolbar-links {
+    border-color: #e8e5d8;
+    background: #292d27;
+    box-shadow: 4px 4px 0 #080908;
+  }
+ */
   footer {
     border-color: #20231f;
     background: #bbdec0;
     color: #20231f;
   }
-
-  /* .tool-menu ul,
-  .toolbar-links {
-    border-color: #e8e5d8;
-    background: #292d27;
-    box-shadow: 4px 4px 0 #080908;
-  } */
-
-  /* .toolbar-menu > label {
-    border-color: #e8e5d8;
-  } */
 }
