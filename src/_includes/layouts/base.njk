@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
-        <meta charset="utf-8">
-        <meta name="description" content="{{ title }}">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/github-markdown.css">
-        <link rel="stylesheet" href="/css/i18n-fonts.css">
-        <link rel="stylesheet" href="/css/styles.css">
-        <title>{{ title }} | 一几一几</title>
-    </head>
-    <body>
-        <div class="page-content">
-            {% include "components/toolbar.njk" %}
-            <main>
-                {{ content | safe }}
-            </main>
-        </div>
-        {% include "components/footer.njk" %}
-        <script
-            src="/scripts/random-background.js"
-            data-background-images="{{ site.backgroudImages }}"
-            data-proxy-domain="{{ site.imageProxyDomain }}"
-            data-proxy-referer="{{ site.imageReferer }}"
-        ></script>
-        <script src="/scripts/toolbar.js"></script>
-    </body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="{{ title }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/github-markdown.css">
+    <link rel="stylesheet" href="/css/i18n-fonts.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>{{ title }} | 一几一几</title>
+  </head>
+  <body>
+    <div class="page-content">
+      {% include "components/toolbar.njk" %}
+      <main>
+        {{ content | safe }}
+      </main>
+    </div>
+    {% include "components/footer.njk" %}
+    <script src="/scripts/random-background.js"
+            data-background-images="{{ site.backgroudImages }}"></script>
+    <script src="/scripts/toolbar.js"></script>
+  </body>
 </html>
