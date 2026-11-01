@@ -53,6 +53,10 @@ main .post {
   box-shadow: 6px 6px 0 #20231f;
 }
 
+main .post img {
+  max-width: 24em;
+}
+
 /* 品牌顶栏；建立高层级上下文，避免弹出菜单被页面内容遮挡。 */
 header {
   position: relative;

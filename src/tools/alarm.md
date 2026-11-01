@@ -1,11 +1,11 @@
 ---
 layout: layouts/post.njk
-title: 直播推送
+title: 直播推送（旧）
 tags:
   - tools
 ---
 
-# 直播推送
+# 直播推送（旧）
 
 监测直播间开播状态并进行统一推送的服务。
 
@@ -27,18 +27,10 @@ tags:
     [添加服务器](bark://addServer?address=https%3A%2F%2Fbark.xn--4gqa980aba.vip)
 
     或手动添加
-    - https://bark.一几一几.vip
+    - `https://bark.xn--4gqa980aba.vip`
 
-    注意不要泄露 Bark 中的 `Key`，任何拥有 `Key` 的人都可以向你发送通知。
+    注意不要泄露 Bark 中的 `Key`，任何拥有 `Key` 的人都可以向你发送通知，若意外泄露请及时重置。
 
 **Bark 推送会以重要提醒（类似地震预警）方式响最多30s，使用前请务必确保你是真正的满考子**
 
 **有时候设备会从APNS服务断开，表现为出现激活界面、iMessage断开等，此时Device Token可能重置，请手动打开Bark重新注册（Bark会自动完成）并测试是否能收到消息。**
-
-<!-- ## Accnotify (Android)
-
-即将推出
-
-## Webhook
-
-即将推出 -->

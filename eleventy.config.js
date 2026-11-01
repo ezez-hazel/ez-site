@@ -1,16 +1,13 @@
 module.exports = function (eleventyConfig) {
   let markdownIt = require("markdown-it");
+  let markdown = require("./md.js");
   let esbuild = require("esbuild");
   let path = require("path");
-  let options = {
-    html: true,
-    breaks: true,
-    linkify: true,
-  };
   eleventyConfig.addPassthroughCopy("src/favicon.ico");
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/fonts");
   eleventyConfig.addPassthroughCopy("src/icons");
+  eleventyConfig.addPassthroughCopy("src/image");
   eleventyConfig.addPassthroughCopy("src/simusanji");
   eleventyConfig.addFilter("sortByDataField", function (values, field) {
     return values.slice().sort((a, b) => {
@@ -43,7 +40,7 @@ module.exports = function (eleventyConfig) {
       };
     },
   });
-  eleventyConfig.setLibrary("md", markdownIt(options));
+  eleventyConfig.setLibrary("md", markdown);
   return {
     dir: {
       input: "src",
